@@ -1,0 +1,35 @@
+{
+  "name": "@upgrade-assistant/core",
+  "version": "0.1.0",
+  "description": "Core migration engine for Upgrade Assistant: project scanning, dependency resolution, AST analysis, migration planning and execution.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "migration",
+    "upgrade",
+    "ast",
+    "codemod"
+  ],
+  "dependencies": {
+    "semver": "^7.8.5",
+    "ts-morph": "^28.0.0"
+  }
+}

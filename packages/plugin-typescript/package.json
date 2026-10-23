@@ -1,0 +1,28 @@
+{
+  "name": "@upgrade-assistant/plugin-typescript",
+  "version": "0.1.0",
+  "description": "TypeScript migration plugin for Upgrade Assistant — compiler-option and language breaking changes across TypeScript releases.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@upgrade-assistant/core": "0.1.0"
+  }
+}

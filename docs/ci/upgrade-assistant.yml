@@ -1,0 +1,57 @@
+# Upgrade Assistant — scheduled migration PRs
+#
+# Copy this file to .github/workflows/upgrade-assistant.yml in YOUR project.
+# Weekly: analyzes the project, applies the safe automated fixes, and opens
+# a PR whose description is the Migration Report — impact, risk, effort and
+# the manual-step checklist, with every finding linked to official docs.
+#
+# This is the project-aware complement to Renovate/Dependabot: the PR
+# explains what actually breaks in YOUR code, not just that a version exists.
+
+name: Upgrade Assistant
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # 1. Analyze (also writes MIGRATION_REPORT.md and .upgrade-assistant/)
+      - name: Analyze
+        run: npx upgrade-assistant analyze --json > analysis.json
+
+      # 2. Apply the safe automated part (no branch: the PR action handles it)
+      - name: Migrate
+        run: npx upgrade-assistant migrate --yes --no-branch --no-verify
+
+      # 3. Verify with the project's own typechecker and tests
+      - name: Verify
+        run: npx upgrade-assistant verify --tests
+
+      # 4. Open/update the PR with the report as description
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: upgrade-assistant/scheduled
+          title: 'chore(deps): guided migration (Upgrade Assistant)'
+          body-path: MIGRATION_REPORT.md
+          commit-message: 'chore(deps): apply Upgrade Assistant automated fixes'
+          add-paths: |
+            .
+          delete-branch: true

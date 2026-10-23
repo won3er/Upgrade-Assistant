@@ -1,0 +1,45 @@
+{
+  "name": "upgrade-assistant-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Upgrade Assistant \u2014 an open-source migration engine that understands your project, plans upgrades, and applies them safely.",
+  "license": "MIT",
+  "author": "won3er",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b packages/core packages/plugin-react packages/plugin-nextjs packages/plugin-typescript packages/cli",
+    "clean": "tsc -b packages/core packages/plugin-react packages/plugin-nextjs packages/plugin-typescript packages/cli --clean",
+    "test": "npm run build && vitest run",
+    "test:watch": "vitest",
+    "typecheck": "npm run build",
+    "ua": "node packages/cli/bin/upgrade-assistant.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/won3er/Upgrade-Assistant"
+  },
+  "keywords": [
+    "migration",
+    "upgrade",
+    "codemod",
+    "ast",
+    "dependencies",
+    "breaking-changes",
+    "react",
+    "nextjs",
+    "typescript",
+    "cli"
+  ],
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/semver": "^7.7.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  }
+}

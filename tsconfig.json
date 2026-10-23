@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/plugin-react" },
+    { "path": "packages/plugin-nextjs" },
+    { "path": "packages/plugin-typescript" },
+    { "path": "packages/cli" }
+  ]
+}

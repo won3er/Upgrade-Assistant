@@ -1,0 +1,41 @@
+{
+  "name": "upgrade-assistant",
+  "version": "0.1.0",
+  "description": "The migration engine for your codebase: impact-scoped upgrade analysis, migration plans and safe automated codemods for React, Next.js and TypeScript.",
+  "license": "MIT",
+  "author": "won3er",
+  "type": "module",
+  "bin": {
+    "upgrade-assistant": "bin/upgrade-assistant.js",
+    "ua": "bin/upgrade-assistant.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@upgrade-assistant/core": "0.1.0",
+    "@upgrade-assistant/plugin-nextjs": "0.1.0",
+    "@upgrade-assistant/plugin-react": "0.1.0",
+    "@upgrade-assistant/plugin-typescript": "0.1.0",
+    "commander": "^15.0.0",
+    "picocolors": "^1.1.1"
+  },
+  "keywords": [
+    "migration",
+    "upgrade",
+    "breaking-changes",
+    "codemod",
+    "react",
+    "nextjs",
+    "typescript"
+  ]
+}
